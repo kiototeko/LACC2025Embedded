@@ -108,25 +108,7 @@ static esp_err_t stream_handler(httpd_req_t *req)
         } else {
             // If we have a previous frame, perform simple motion detection
             if (fb_last) {
-                int changed = 0;
-                uint8_t *data  = fb->buf;        // Current frame data
-                uint8_t *data0 = fb_last->buf;   // Previous frame data
-                size_t len     = fb->len;        // Number of bytes in frame
-                // Compare pixel values at intervals (R channel)
-                for (size_t i = 0; i < len; i += 4) {
-                    if (abs(data[i] - data0[i]) > DIFF_THRESHOLD) {
-                        if (++changed > MOTION_PIXELS) {
-                            // Enough pixels changed: stop early
-                            break;
-                        }
-                    }
-                }
-                // Turn LED on if motion detected, off otherwise
-                if (changed > MOTION_PIXELS) {
-                    digitalWrite(LED_PIN, HIGH);
-                } else {
-                    digitalWrite(LED_PIN, LOW);
-                }
+                ;
             }
 
             // Release the last frame buffer to free memory

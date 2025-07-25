@@ -26,8 +26,7 @@ void setup() {
   Serial.println();
 
   //Setup LED OUTPUT that will light up when there is motion
-  pinMode(LED_PIN, OUTPUT);
-  digitalWrite(LED_PIN, LOW);
+
 
   //Setup camera
   cameraInit();
@@ -79,11 +78,11 @@ void cameraInit(void){
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 10000000;
   config.frame_size = FRAMESIZE_QQVGA; //Size of images
-  config.pixel_format = PIXFORMAT_GRAYSCALE; //Format of images
+  config.pixel_format = PIXFORMAT_YUV422; //Format of images
   config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
   config.fb_location = CAMERA_FB_IN_PSRAM;
   config.jpeg_quality = 12;
-  config.fb_count = 2; //1;
+  config.fb_count = 2; 
   
   
   // if PSRAM IC present, init with UXGA resolution and higher JPEG quality
